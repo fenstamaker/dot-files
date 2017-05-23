@@ -101,6 +101,8 @@ alias dockerclean="docker rm -v $(docker ps -a -q -f status=exited) && docker rm
 alias dcc="dockerclean"
 alias subtree="git pull -s subtree"
 
+alias gcm="git commit -m"
+
 alias vpn="sudo openconnect --juniper --user=fenstamakerg --authgroup=TWP-main ra.washpost.com"
 
 # alt <- moves back a word
@@ -128,4 +130,3 @@ for key kcap seq widget (
   zle -N shift-$key
   bindkey ${terminfo[k$kcap]-$seq} shift-$key
 }
-
