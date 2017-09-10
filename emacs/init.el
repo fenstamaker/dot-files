@@ -484,6 +484,11 @@
   (global-git-gutter-mode t)
   (git-gutter:linum-setup))
 
+(use-package solarized-theme
+  :ensure t
+  :config
+  (load-theme 'solarized-dark))
+
 ;;; Aliases
 (defalias 'ff        'helm-findfiles)
 (defalias 'files     'helm-findes)
