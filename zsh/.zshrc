@@ -44,14 +44,13 @@ COMPLETION_WAITING_DOTS="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=~/.zsh_custom
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(aws brew common-aliases compleat git git-extras httpie jsontools lein mvn npm osx pip python ruby sbt scala sudo tldr wd)
-
 # User configuration
 
 export PATH="/Users/fenstamaker/anaconda3/bin:/Users/fenstamaker/Developer:/usr/local/go/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Users/fenstamaker/Developer/maven/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/fenstamaker/Developer/adt/sdk/platform-tools:/Users/fenstamaker/Developer/adt/sdk/tools:/usr/local/mysql/bin:/usr/local/sbin"
@@ -88,6 +87,7 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias arc="envdir ~/.envs/arc"
+alias syd="envdir ~/.envs/syd"
 alias awscut="cut -d \" \" -f 3-"
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias start_mongo="mongod --config /usr/local/etc/mongod.conf"
@@ -102,6 +102,11 @@ alias dcc="dockerclean"
 alias subtree="git pull -s subtree"
 
 alias gcm="git commit -m"
+alias cheat="tldr"
+alias manuel="/usr/bin/man"
+alias man="tldr"
+alias json="jq"
+
 
 alias vpn="sudo openconnect --juniper --user=fenstamakerg --authgroup=TWP-main ra.washpost.com"
 
