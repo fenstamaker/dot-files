@@ -88,6 +88,7 @@ export EDITOR='vim'
 
 alias arc="envdir ~/.envs/arc"
 alias syd="envdir ~/.envs/syd"
+alias per="envdir ~/.envs/personal"
 alias awscut="cut -d \" \" -f 3-"
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias start_mongo="mongod --config /usr/local/etc/mongod.conf"
