@@ -389,7 +389,14 @@
     (safe->> 1)
     (safe-> 1)
     (fdef 1)
-    ))
+    (sas-> 2)
+    (s-> 1)
+    (s->> 1)
+    (match 1)
+    (mlet 2)
+    (->= 1)
+    )
+  )
 
 (use-package ensime
   :ensure t
