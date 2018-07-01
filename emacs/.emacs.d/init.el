@@ -1,5 +1,7 @@
 (require 'package)
 
+(tool-bar-mode -1)
+
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
        (url (concat (if no-ssl "http" "https") "://melpa.org/packages/"))
@@ -171,9 +173,12 @@
   (setq company-global-modes '(not org-mode))
   (setq company-global-modes '(not csv-mode))
 
-                                        ; Disable Lowercase
+  ;; Disable Lowercase
+  (setq company-dabbrev-downcase nil)
   (add-to-list 'company-dabbrev-code-modes 'web-mode)
   (add-to-list 'company-dabbrev-code-modes 'clojure-mode)
+  (add-to-list 'company-dabbrev-code-modes 'yaml-mode)
+  (add-to-list 'company-dabbrev-code-modes 'json-mode)
 
   (setq company-idle-delay 0.125)
   (setq company-minimum-prefix-length 3))
@@ -381,11 +386,15 @@
     (GET 2)
     (POST 2)
     (PUT 2)
+    (PATCH 2)
     (DELETE 2)
     (HEAD 2)
     (ANY 2)
+    (OPTIONS 2)
     (context 2)
     (fact 1)
+    (some->> 1)
+    (some-> 1)
     (safe->> 1)
     (safe-> 1)
     (fdef 1)
@@ -395,6 +404,8 @@
     (match 1)
     (mlet 2)
     (->= 1)
+    (wcar 1)
+    (wcar* 1)
     )
   )
 
@@ -424,6 +435,8 @@
   (add-to-list 'auto-mode-alist '("\\.json\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.avsc\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.babelrc\\'" . web-mode))
+
 
   (set-face-background 'web-mode-current-element-highlight-face "#53b3eb")
   (set-face-foreground 'web-mode-current-element-highlight-face "#ffffff")
@@ -435,7 +448,8 @@
         '(("json"    . "\\.json\\'")
           ("json"    . "\\.eslintrc\\'")
           ("json"    . "\\.avsc\\'")
-          ("jsx"     . "\\.js[x]?\\'")))
+          ("jsx"     . "\\.js[x]?\\'")
+          ("json"     . "\\.babelrc\\'")))
 
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -479,14 +493,23 @@
   :config
   )
 
-(use-package indent-guide
-  :ensure t
+(use-package highlight-indentation
   :config
-  (indent-guide-global-mode)
-  (set-face-foreground 'indent-guide-face "#dadada")
-  (set-face-background 'indent-guide-face nil)
-  (setq indent-guide-char "|")
-  (setq indent-guide-delay 0.75))
+  (add-hook 'yaml-mode-hook 'highlight-indentation-mode)
+  (add-hook 'yaml-mode-hook 'highlight-indentation-current-column-mode)
+  (add-hook 'python-mode-hook 'highlight-indentation-mode)
+  (add-hook 'python-mode-hook 'highlight-indentation-current-column-mode)
+  (set-face-background 'highlight-indentation-face "#0D3842")
+  (set-face-background 'highlight-indentation-current-column-face "#27525C"))
+
+;; (use-package indent-guide
+;;   :ensure t
+;;   :config
+;;   (indent-guide-global-mode)
+;;   (set-face-foreground 'indent-guide-face "#dadada")
+;;   (set-face-background 'indent-guide-face nil)
+;;   (setq indent-guide-char "|")
+;;   (setq indent-guide-delay 0.75))
 
 (use-package git-gutter
   :ensure t
@@ -568,10 +591,10 @@ point reaches the beginning or end of the buffer, stop there."
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(package-selected-packages
    (quote
-    (markdown-mode yaml-mode web-mode use-package spinner solarized-theme smartparens queue multiple-cursors inf-clojure indent-guide helm-swoop helm-projectile git-gutter flycheck exec-path-from-shell ensime csv-mode color-theme-solarized color-theme-sanityinc-solarized base16-theme))))
+    (highlight-indentation markdown-mode yaml-mode web-mode use-package spinner solarized-theme smartparens queue multiple-cursors inf-clojure helm-swoop helm-projectile git-gutter flycheck exec-path-from-shell ensime csv-mode color-theme-solarized color-theme-sanityinc-solarized base16-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

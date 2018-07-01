@@ -50,10 +50,10 @@ ZSH_CUSTOM=~/.zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws brew common-aliases compleat git git-extras httpie jsontools lein mvn npm osx pip python ruby sbt scala sudo tldr wd)
+plugins=(aws brew common-aliases compleat git git-extras jsontools lein mvn npm osx ruby sbt scala sudo tldr wd)
 # User configuration
 
-export PATH="/Users/fenstamaker/anaconda3/bin:/Users/fenstamaker/Developer:/usr/local/go/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Users/fenstamaker/Developer/maven/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/fenstamaker/Developer/adt/sdk/platform-tools:/Users/fenstamaker/Developer/adt/sdk/tools:/usr/local/mysql/bin:/usr/local/sbin"
+export PATH="/Users/fenstamaker/Developer:/usr/local/go/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Users/fenstamaker/Developer/maven/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/fenstamaker/Developer/adt/sdk/platform-tools:/Users/fenstamaker/Developer/adt/sdk/tools:/usr/local/mysql/bin:/usr/local/sbin"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -87,19 +87,27 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias arc="envdir ~/.envs/arc"
+alias ent="envdir ~/.envs/ent"
 alias syd="envdir ~/.envs/syd"
-alias per="envdir ~/.envs/personal"
+alias wpit="envdir ~/.envs/wpit"
+alias hp="envdir ~/.envs/hp"
+alias dw="envdir ~/.envs/dw"
+alias sdbx="envdir ~/.envs/sandbox"
 alias awscut="cut -d \" \" -f 3-"
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias start_mongo="mongod --config /usr/local/etc/mongod.conf"
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
+alias icloud="cd ~/Library/Mobile\ Documents/com\~apple\~CloudDocs"
+alias sublime="open -a /Applications/Sublime\ Text.app"
 
-alias dc="docker-compose"
-alias dcu="docker-compose up"
-alias dcb="docker-compose build"
+alias ungron="gron --ungron"
 
-alias dockerclean="docker rm -v $(docker ps -a -q -f status=exited) && docker rmi $(docker images -f "dangling=true" -q)"
-alias dcc="dockerclean"
+#alias dc="docker-compose"
+#alias dcu="docker-compose up"
+#alias dcb="docker-compose build"
+
+#alias dockerclean="docker rm -v $(docker ps -a -q -f status=exited) && docker rmi $(docker images -f "dangling=true" -q)"
+#alias dcc="dockerclean"
 alias subtree="git pull -s subtree"
 
 alias gcm="git commit -m"
@@ -108,6 +116,10 @@ alias manuel="/usr/bin/man"
 alias man="tldr"
 alias json="jq"
 
+alias java8="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
+alias java9="export JAVA_HOME=$(/usr/libexec/java_home -v 9)"
+
+findreplace () { sed -i '' -- "s/$1/$2/g" * }
 
 alias vpn="sudo openconnect --juniper --user=fenstamakerg --authgroup=TWP-main ra.washpost.com"
 
@@ -117,10 +129,8 @@ bindkey -e
 bindkey '\e\e[C' forward-word
 bindkey '\e\e[D' backward-word
 
-
 source /Users/fenstamaker/Developer/git-subrepo/.rc
 fpath=('/Users/fenstamaker/Developer/git-subrepo/share/zsh-completion' $fpath)
-
 
 shift-arrow() {
   ((REGION_ACTIVE)) || zle set-mark-command
@@ -136,3 +146,13 @@ for key kcap seq widget (
   zle -N shift-$key
   bindkey ${terminfo[k$kcap]-$seq} shift-$key
 }
+source /usr/local/bin/virtualenvwrapper.sh
+
+kms-decrypt() {
+  arc aws kms decrypt --ciphertext-blob fileb://<(echo "$1" | base64 --decode) --output text --query Plaintext | base64 --decode
+}
+
+syd-kms-decrypt() {
+  syd aws kms decrypt --ciphertext-blob fileb://<(echo "$1" | base64 --decode) --output text --query Plaintext | base64 --decode
+}
+alias kmsd="kms-decrypt"
