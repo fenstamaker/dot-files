@@ -146,6 +146,7 @@
   (interactive)
   (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 
+
 ;;; Small Packages
 
 (use-package saveplace
@@ -302,6 +303,7 @@
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; make TAB works in terminal
   (define-key helm-map (kbd "<enter>") 'helm-execute-persistent-action) ; make TAB works in terminal
   (define-key helm-map (kbd "C-z") 'helm-select-action) ; list actions using C-z
+  (define-key helm-map (kbd "<C-return>") 'helm-select-action) ; or list actions using ctrl+enter
   (define-key helm-map (kbd "s-s") 'helm-grep-default-recurse-command)
 
   (setq helm-split-window-in-side-p t)
@@ -486,7 +488,12 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
+  :init
+  (setq markdown-command "multimarkdown")
+  :config
+  ;; Spell Check
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'markdown-mode-hook 'flyspell-mode))
 
 (use-package csv-mode
   :ensure t

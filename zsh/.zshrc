@@ -152,7 +152,20 @@ kms-decrypt() {
   arc aws kms decrypt --ciphertext-blob fileb://<(echo "$1" | base64 --decode) --output text --query Plaintext | base64 --decode
 }
 
-syd-kms-decrypt() {
-  syd aws kms decrypt --ciphertext-blob fileb://<(echo "$1" | base64 --decode) --output text --query Plaintext | base64 --decode
+wpit-kms-decrypt() {
+  wpit aws kms decrypt --ciphertext-blob fileb://<(echo "$1" | base64 --decode) --output text --query Plaintext | base64 --decode
 }
+
+syd-kms-decrypt() {
+  syd aws kms decrypt --region ap-southeast-2 --ciphertext-blob fileb://<(echo "$1" | base64 --decode) --output text --query Plaintext | base64 --decode
+}
+
+pem-fingerprint() {
+  openssl pkcs8 -in "$1" -inform PEM -outform DER -topk8 -nocrypt | openssl sha1 -c
+}
+
+alias clavis-encrypt="arc aws kms encrypt --key-id c95f817d-6381-4b50-8647-bf8114fd24f4 --plaintext"
+alias perso-encrypt="arc aws kms encrypt --key-id bec6648a-876c-4541-99f8-38c7540f996f --plaintext"
+alias syd-perso-encrypt="arc aws kms encrypt --region ap-southeast-2 --key-id d8ec7d71-9d6f-4561-ab35-3fca7e3f69e5 --plaintext"
+
 alias kmsd="kms-decrypt"
