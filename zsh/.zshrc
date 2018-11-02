@@ -86,6 +86,7 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias bigdata="source /Users/fenstamaker/.clokta/bigdata.sh";
 alias arc="envdir ~/.envs/arc"
 alias ent="envdir ~/.envs/ent"
 alias syd="envdir ~/.envs/syd"
@@ -149,19 +150,57 @@ for key kcap seq widget (
 source /usr/local/bin/virtualenvwrapper.sh
 
 kms-decrypt() {
-  arc aws kms decrypt --ciphertext-blob fileb://<(echo "$1" | base64 --decode) --output text --query Plaintext | base64 --decode
+    if [ -z "$1" ]
+    then read input
+    else
+        input=$1
+    fi
+    aws kms decrypt --ciphertext-blob fileb://<(echo "$input" | base64 --decode) --output text --query Plaintext | base64 --decode
+}
+
+eu-kms-decrypt() {
+    if [ -z "$1" ]
+    then read input
+    else
+        input=$1
+    fi
+  aws kms decrypt --ciphertext-blob fileb://<(echo "$input" | base64 --decode) --output text --query Plaintext --region eu-central-1 | base64 --decode
+}
+
+arc-kms-decrypt() {
+    if [ -z "$1" ]
+    then read input
+    else
+        input=$1
+    fi
+  arc aws kms decrypt --ciphertext-blob fileb://<(echo "$input" | base64 --decode) --output text --query Plaintext | base64 --decode
 }
 
 wpit-kms-decrypt() {
-  wpit aws kms decrypt --ciphertext-blob fileb://<(echo "$1" | base64 --decode) --output text --query Plaintext | base64 --decode
+    if [ -z "$1" ]
+    then read input
+    else
+        input=$1
+    fi
+  wpit aws kms decrypt --ciphertext-blob fileb://<(echo "$input" | base64 --decode) --output text --query Plaintext | base64 --decode
 }
 
 syd-kms-decrypt() {
-  syd aws kms decrypt --region ap-southeast-2 --ciphertext-blob fileb://<(echo "$1" | base64 --decode) --output text --query Plaintext | base64 --decode
+    if [ -z "$1" ]
+    then read input
+    else
+        input=$1
+    fi
+  syd aws kms decrypt --region ap-southeast-2 --ciphertext-blob fileb://<(echo "$input" | base64 --decode) --output text --query Plaintext | base64 --decode
 }
 
 pem-fingerprint() {
-  openssl pkcs8 -in "$1" -inform PEM -outform DER -topk8 -nocrypt | openssl sha1 -c
+    if [ -z "$1" ]
+    then read input
+    else
+        input=$1
+    fi
+  openssl pkcs8 -in "$input" -inform PEM -outform DER -topk8 -nocrypt | openssl sha1 -c
 }
 
 alias clavis-encrypt="arc aws kms encrypt --key-id c95f817d-6381-4b50-8647-bf8114fd24f4 --plaintext"
@@ -169,3 +208,23 @@ alias perso-encrypt="arc aws kms encrypt --key-id bec6648a-876c-4541-99f8-38c754
 alias syd-perso-encrypt="arc aws kms encrypt --region ap-southeast-2 --key-id d8ec7d71-9d6f-4561-ab35-3fca7e3f69e5 --plaintext"
 
 alias kmsd="kms-decrypt"
+
+alias clokta="/Users/fenstamaker/.virtualenvs/clokta/bin/clokta"
+
+clear-clokta() {
+    unset AWS_ACCESS_KEY_ID;
+    unset AWS_SECRET_ACCESS_KEY;
+    unset AWS_SESSION_TOKEN;
+}
+
+git-add() {
+    git add $1
+    git status
+}
+
+alias ga="git-add"
+alias gaa="git-add ."
+alias gs="git status"
+alias gr="git reset"
+alias gp="git push origin"
+alias gpp="git push origin master"

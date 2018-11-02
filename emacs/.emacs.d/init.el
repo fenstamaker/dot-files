@@ -492,7 +492,6 @@
   (setq markdown-command "multimarkdown")
   :config
   ;; Spell Check
-  (add-hook 'text-mode-hook 'flyspell-mode)
   (add-hook 'markdown-mode-hook 'flyspell-mode))
 
 (use-package csv-mode

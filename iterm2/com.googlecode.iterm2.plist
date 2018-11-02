@@ -6,6 +6,8 @@
 	<true/>
 	<key>AllowClipboardAccess</key>
 	<false/>
+	<key>AlternateMouseScroll</key>
+	<true/>
 	<key>AnimateDimming</key>
 	<false/>
 	<key>AppleAntiAliasingThreshold</key>
@@ -4570,6 +4572,8 @@
 	<string>~/Documents</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 448}</string>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
+	<string>{712, 565}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -4611,17 +4615,17 @@
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>950 932 616 174 0 0 2560 1417 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>269 207 599 388 0 0 1440 877 </string>
+	<string>270 138 606 456 0 0 2560 1417 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>617 783 918 381 0 0 2560 1417 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
-	<string>-1200 193 592 584 -1280 0 1280 777 </string>
+	<string>-1153 193 592 584 -1280 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>378 0 1258 1027 0 0 1680 1027 </string>
+	<string>843 23 834 1004 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 46 1130 981 0 0 1680 1027 </string>
+	<string>3 0 834 1027 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>474 512 650 502 0 0 1680 1027 </string>
+	<string>843 0 834 1027 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>1244 695 570 452 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -5395,14 +5399,32 @@
 			<string>/Users/fenstamaker</string>
 		</dict>
 	</array>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
+	<false/>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
+	<integer>1</integer>
+	<key>NoSyncDoNotWarnBeforePastingOneLineEndingInNewlineAtShellPrompt</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforePastingOneLineEndingInNewlineAtShellPrompt_selection</key>
+	<integer>1</integer>
+	<key>NoSyncHaveShownPromoWithId_4</key>
+	<true/>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
-	<string>B76C3F22-B5B7-43C5-8803-B93076F254D6</string>
+	<string>6C4AB57B-D981-41FB-8029-923B165F6899</string>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
-	<real>517192391.19492197</real>
+	<real>486417361.33628201</real>
+	<key>NoSyncTimeOfLastPromo</key>
+	<real>477601102.468032</real>
+	<key>NoSyncTimeOfLastPromoDownload</key>
+	<real>486416495.59720701</real>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
 	<key>OpenArrangementAtStartup</key>
@@ -5453,7 +5475,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/fenstamaker/dot-files/iterm2</string>
+	<string>/Users/fenstamaker/dot-files/iterm2/</string>
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -5469,11 +5491,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing.xml?shard=94</string>
+	<string>https://iterm2.com/appcasts/testing.xml?shard=65</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-06-12T15:15:03Z</date>
+	<date>2018-09-05T16:09:26Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -5498,6 +5520,8 @@
 	<integer>10</integer>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
+	<key>UKCrashReporterLastCrashReportDate</key>
+	<real>1530206208</real>
 	<key>URLHandlersByGuid</key>
 	<dict/>
 	<key>UseBorder</key>
@@ -8635,7 +8659,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.5.beta.1</string>
+	<string>3.2.1beta2</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
